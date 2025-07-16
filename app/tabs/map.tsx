@@ -198,14 +198,16 @@ export default function MapScreen() {
       </View>
 
       <View style={styles.searchContainer}>
-        <TextInput
-          style={styles.searchBar}
-          value={search}
-          onChangeText={setSearch}
-          onSubmitEditing={() => handleLocationSelect(search)}
-          placeholder="Search cities, zip codes..."
-          placeholderTextColor="#888"
-        />
+        <View style={styles.searchBar}>
+          <TextInput
+            value={search}
+            onChangeText={setSearch}
+            onSubmitEditing={() => handleLocationSelect(search)}
+            placeholder="Search cities, zip codes..."
+            placeholderTextColor="#888"
+            style={styles.searchInput}
+          />
+        </View>
         {suggestions.length > 0 && (
           <ScrollView style={styles.suggestionsContainer}>
             {suggestions.map((item, index) => (
@@ -269,18 +271,21 @@ const styles = StyleSheet.create({
   searchContainer: {
     position: 'absolute',
     top: 50,
-    left: 15,
-    right: 15,
+    left: 0,
+    right: 0,
+    paddingHorizontal: 20,
     zIndex: 2,
   },
   searchBar: {
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    height: 40,
-    paddingHorizontal: 12,
+    backgroundColor: '#f0f0f0',
+    borderRadius: 30,
+    padding: 12,
+    paddingHorizontal: 20,
+    marginBottom: 20,
+    elevation: 3,
+  },
+  searchInput: {
     fontSize: 16,
-    borderColor: '#ccc',
-    borderWidth: 1,
   },
   suggestionsContainer: {
     backgroundColor: '#fff',
@@ -289,7 +294,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderTopWidth: 0,
     borderRadius: 4,
-    marginTop: 4,
+    marginTop: -15,
     zIndex: 999,
     elevation: 5,
   },

@@ -1,41 +1,145 @@
-// app/tabs/_layout.tsx
 import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
-import { Image } from 'react-native';
+import React from 'react';
+import { Image, StyleSheet, View } from 'react-native';
+import cameraIcon from '../../assets/icons/camIcon.png';
+import exploreIcon from '../../assets/icons/exploreIcon.png';
+import mapIcon from '../../assets/icons/mapIcon.png';
 
+
+const styles = StyleSheet.create({
+  tabIcon: {
+    alignSelf: 'center',
+  },
+  centerButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 55,
+    height: 55,
+    backgroundColor: 'transparent',
+    borderRadius: 28,
+    marginBottom: 0,
+  },
+});
+
+const colors = {
+  cream: '#FFF5E0',
+  darkGray: '#2D2B2B',
+};
 
 export default function TabsLayout() {
   return (
-    <Tabs>
+    <Tabs
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: 90,
+          backgroundColor: 'rgba(168, 147, 147, 0.9)',
+          borderTopWidth: 0,
+          elevation: 0,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: -4 },
+          shadowOpacity: 0,
+          shadowRadius: 8,
+          paddingBottom: 45,
+          paddingTop: 5,
+          flexDirection: 'row',
+          justifyContent: 'space-evenly',
+          alignItems: 'center',
+        },
+        tabBarShowLabel: false,
+      }}
+    >
       <Tabs.Screen
-        name="profile"
+        name="explore"
         options={{
-          title: 'Profile',
-          tabBarIcon: ({ color, size }) => <Ionicons name="person-outline" size={24} color={color} />,
+          title: 'Explore',
+          tabBarIcon: ({ focused }) => (
+            <Image
+              source={exploreIcon}
+              resizeMode="contain"
+              style={{
+                width: focused ? 44 : 40,
+                height: focused ? 44 : 40,
+                tintColor: focused ? colors.cream : colors.darkGray,
+              }}
+            />
+          ),
         }}
       />
+
+      <Tabs.Screen
+        name="deals"
+        options={{
+          title: 'Deals',
+          tabBarIcon: ({ focused }) => (
+            <Ionicons
+              name="pricetags-outline"
+              size={focused ? 30 : 30}
+              color={focused ? colors.cream : colors.darkGray}
+              style={styles.tabIcon}
+            />
+          ),
+        }}
+      />
+
       <Tabs.Screen
         name="map"
         options={{
           title: 'Map',
           tabBarIcon: ({ focused }) => (
-            <Image
-              source={require('../../assets/images/mapIcon.png')}
-              style={{
-                width: 34,
-                height: 34,
-                opacity: focused ? 1 : 0.6,
-              }}
-              resizeMode="contain"
-            />
+            <View style={styles.centerButton}>
+              <Image
+                source={mapIcon}
+                resizeMode="contain"
+                style={{
+                  width: 70,
+                  height: 70,
+                }}
+              />
+            </View>
           ),
         }}
       />
+
       <Tabs.Screen
-        name="deals"
+        name="photo"
         options={{
-          title: 'Deals',
-          tabBarIcon: ({ color, size }) => <Ionicons name="pricetags-outline" size={24} color={color} />,
+          title: 'Photo',
+          tabBarStyle: { display: 'none' }, // 👈 Hides the tab bar
+          tabBarIcon: ({ focused }) => (
+          <Image
+            source={cameraIcon}
+            resizeMode="contain"
+            style={[
+            styles.tabIcon,
+            {
+              width: focused ? 58 : 58,
+              height: focused ? 58 : 58,
+            },
+          ]}
+        />
+      ),
+    }}
+  />
+      
+
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'Profile',
+          tabBarIcon: ({ focused }) => (
+            <Ionicons
+              name="person-outline"
+              size={focused ? 40 : 36}
+              color={focused ? colors.cream : colors.darkGray}
+              style={styles.tabIcon}
+            />
+          ),
         }}
       />
     </Tabs>

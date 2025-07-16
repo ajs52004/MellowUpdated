@@ -38,7 +38,7 @@ export default function SplashScreen() {
     <View style={styles.container}>
       {!showDay ? (
         <Animated.Image
-          source={require('../../../assets/images/splash-logo.png')}
+          source={require('../../../assets/icons/splash-logo.png')}
           style={[
             styles.logo,
             {

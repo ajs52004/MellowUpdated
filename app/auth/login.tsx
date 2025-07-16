@@ -48,7 +48,7 @@ export default function LoginScreen() {
 
     try {
       await login(form);
-      router.replace('/tabs');
+      router.replace('/map' as any );
     } catch (err) {
       setError('Login failed. Please check your credentials.');
     }
@@ -57,12 +57,12 @@ export default function LoginScreen() {
   return (
     <SafeAreaView style={styles.container}>
     <TouchableOpacity 
-      onPress={() => router.replace('/tabs')} style={{ position: 'absolute', top: 40, left: 20, zIndex: 1 }}>
+      onPress={() => router.replace('/map' as any )} style={{ position: 'absolute', top: 40, left: 20, zIndex: 1 }}>
     <Ionicons name="arrow-back" size={28} color="#fff" />
     </TouchableOpacity>
       <View style={styles.logoWrapper}>
         <Image
-          source={require('../../assets/images/splash-logo.png')}
+          source={require('../../assets/icons/splash-logo.png')}
           style={styles.logo}
         />
         <Text style={styles.loginTitle}>Log In</Text>

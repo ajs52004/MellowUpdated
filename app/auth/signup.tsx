@@ -46,7 +46,7 @@ export default function SignupScreen() {
     }
     try {
       await signup({ ...form, profileImage } as const);
-      router.replace('/tabs');
+      router.replace('/map' as any );
     } catch (err) {
       setError('Signup failed. Please try again.');
     }
@@ -66,7 +66,7 @@ export default function SignupScreen() {
           source={
             profileImage
               ? { uri: profileImage }
-              : require('../../assets/images/martini-placeholder.png')
+              : require('../../assets/icons/martini-placeholder.png')
           }
           style={styles.avatar}
         />
