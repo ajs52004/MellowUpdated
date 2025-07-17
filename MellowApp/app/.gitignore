@@ -1,0 +1,20 @@
+# Node & Expo
+node_modules/
+.expo/
+.expo-shared/
+.env
+*.log
+*.lock
+
+# macOS system files
+.DS_Store
+
+# React Native
+android/.gradle
+android/app/build
+ios/Pods
+*.keystore
+
+# VSCode or JetBrains IDE settings
+.vscode/
+.idea/

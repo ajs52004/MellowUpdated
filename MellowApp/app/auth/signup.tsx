@@ -78,7 +78,7 @@ const handleSignup = async () => {
           source={
             profileImage
               ? { uri: profileImage }
-              : require('../../assets/images/martini-placeholder.png')
+              : require('../../assets/icons/martini-placeholder.png')
           }
           style={styles.avatar}
         />

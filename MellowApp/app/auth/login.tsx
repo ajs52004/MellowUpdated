@@ -81,7 +81,7 @@ const handleLogin = async () => {
 
         <View style={styles.logoWrapper}>
           <Image
-            source={require('../../assets/images/splash-logo.png')}
+            source={require('../../assets/icons/splash-logo.png')}
             style={styles.logo}
           />
           <Text style={styles.loginTitle}>Log In</Text>

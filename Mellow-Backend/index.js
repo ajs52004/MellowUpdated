@@ -109,6 +109,8 @@ app.get('/api/deals', (req, res) => {
 });
 
 
-app.listen(port, () => {
-  console.log(`Mellow backend listening at http://localhost:${port}`);
+const IP = '10.55.218.119'; // replace with your machine's IP address
+
+app.listen(port, IP, () => {
+  console.log(`Mellow backend listening at http://${IP}:${port}`);
 });

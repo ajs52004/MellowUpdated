@@ -57,53 +57,6 @@ export default function ProfileScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Settings Modal */}
-      <Modal
-  visible={settingsVisible}
-  animationType="slide"
-  transparent={true}
-  onRequestClose={() => setSettingsVisible(false)}
->
-  <View style={styles.modalOverlay}>
-    <View style={styles.modalContainer}>
-      <Text style={styles.modalHeader}>Settings</Text>
-
-      <Text style={styles.sectionTitle}>ACCOUNT</Text>
-
-      <TouchableOpacity style={styles.settingRow} onPress={() => Alert.alert('Coming Soon')}>
-        <Ionicons name="person-outline" size={20} color="#fff" style={styles.settingIcon} />
-        <Text style={styles.settingText}>Profile</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.settingRow} onPress={() => Alert.alert('Coming Soon')}>
-        <Ionicons name="eye-outline" size={20} color="#fff" style={styles.settingIcon} />
-        <Text style={styles.settingText}>Preferences</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.settingRow} onPress={() => Alert.alert('Coming Soon')}>
-        <Ionicons name="notifications-outline" size={20} color="#fff" style={styles.settingIcon} />
-        <Text style={styles.settingText}>Notifications</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.settingRow} onPress={() => Alert.alert('Coming Soon')}>
-        <Ionicons name="lock-closed-outline" size={20} color="#fff" style={styles.settingIcon} />
-        <Text style={styles.settingText}>Privacy Settings</Text>
-      </TouchableOpacity>
-
-      {/* Sign Out Option */}
-      <TouchableOpacity style={[styles.settingRow, styles.signOutRow]} onPress={logout}>
-        <Ionicons name="log-out-outline" size={20} color="#FBBC05" style={styles.settingIcon} />
-        <Text style={styles.signOutText}>Sign Out</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => setSettingsVisible(false)} style={styles.closeButton}>
-        <Text style={styles.closeText}>Close</Text>
-      </TouchableOpacity>
-    </View>
-  </View>
-</Modal>
-
-
       {/* Top Buttons */}
       <TouchableOpacity onPress={handleBackToMap} style={styles.backButton}>
         <Text style={styles.backButtonText}>Back</Text>
@@ -116,27 +69,89 @@ export default function ProfileScreen() {
         <MaterialIcons name="settings" size={24} color="#fff" />
       </TouchableOpacity>
 
-      {/* Main Content */}
-      <View style={styles.content}>
-        <Text style={styles.title}>{name || 'Your Profile'}</Text>
-
+      {/* Profile Section */}
+      <View style={styles.profileSection}>
         <TouchableOpacity onPress={pickImage}>
           {image ? (
-            <Image source={{ uri: image }} style={styles.image} />
+            <Image source={{ uri: image }} style={styles.profileImage} />
           ) : (
             <View style={styles.placeholder}>
-              <Text style={styles.placeholderText}>Pick a Profile Picture</Text>
+              <Text style={styles.placeholderText}>Pick Image</Text>
             </View>
           )}
         </TouchableOpacity>
+        <Text style={styles.userName}>{name || 'Your Profile'}</Text>
       </View>
 
-      {/* Footer: Sign Out Button */}
-      <View style={styles.footer}>
-        <TouchableOpacity style={styles.saveButton} onPress={logout}>
-          <Text style={styles.saveButtonText}>Sign Out</Text>
+      {/* Stats Row */}
+      <View style={styles.statsContainer}>
+        <View style={styles.statCard}>
+          <Text style={styles.statValue}>12</Text>
+          <Text style={styles.statLabel}>Saved Venues</Text>
+        </View>
+        <View style={styles.statCard}>
+          <Text style={styles.statValue}>5</Text>
+          <Text style={styles.statLabel}>Check-ins</Text>
+        </View>
+        <View style={styles.statCard}>
+          <Text style={styles.statValue}>2 yrs</Text>
+          <Text style={styles.statLabel}>on Mellow</Text>
+        </View>
+      </View>
+
+      {/* Second Row */}
+      <View style={styles.blockRow}>
+        <TouchableOpacity style={styles.blockCard}>
+          <Ionicons name="images-outline" size={32} color="#FBBC05" style={{ marginBottom: 10 }} />
+          <Text style={styles.blockTitle}>My Photos</Text>
+          <Text style={styles.blockText}>View your gallery</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.blockCard}>
+          <Ionicons name="star-outline" size={32} color="#FBBC05" style={{ marginBottom: 10 }} />
+          <Text style={styles.blockTitle}>My Reviews</Text>
+          <Text style={styles.blockText}>Coming soon</Text>
         </TouchableOpacity>
       </View>
+
+      {/* Settings Modal */}
+      <Modal
+        visible={settingsVisible}
+        animationType="slide"
+        transparent={true}
+        onRequestClose={() => setSettingsVisible(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContainer}>
+            <Text style={styles.modalHeader}>Settings</Text>
+            <Text style={styles.sectionTitle}>ACCOUNT</Text>
+
+            <TouchableOpacity style={styles.settingRow} onPress={() => Alert.alert('Coming Soon')}>
+              <Ionicons name="person-outline" size={20} color="#fff" style={styles.settingIcon} />
+              <Text style={styles.settingText}>Profile</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.settingRow} onPress={() => Alert.alert('Coming Soon')}>
+              <Ionicons name="eye-outline" size={20} color="#fff" style={styles.settingIcon} />
+              <Text style={styles.settingText}>Preferences</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.settingRow} onPress={() => Alert.alert('Coming Soon')}>
+              <Ionicons name="notifications-outline" size={20} color="#fff" style={styles.settingIcon} />
+              <Text style={styles.settingText}>Notifications</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.settingRow} onPress={() => Alert.alert('Coming Soon')}>
+              <Ionicons name="lock-closed-outline" size={20} color="#fff" style={styles.settingIcon} />
+              <Text style={styles.settingText}>Privacy Settings</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => setSettingsVisible(false)} style={styles.closeButton}>
+              <Text style={styles.closeText}>Close</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -145,62 +160,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#A89393',
-    padding: 20,
     paddingTop: 60,
   },
-  modalContainer: {
-  backgroundColor: '#2D2B2B',
-  width: '90%',
-  padding: 20,
-  borderRadius: 16,
-  alignItems: 'flex-start',
-},
-modalHeader: {
-  fontSize: 22,
-  color: '#fff',
-  fontWeight: '700',
-  alignSelf: 'center',
-  marginBottom: 10,
-},
-sectionTitle: {
-  color: '#999',
-  fontSize: 14,
-  fontWeight: '600',
-  marginBottom: 10,
-},
-settingRow: {
-  flexDirection: 'row',
-  alignItems: 'center',
-  paddingVertical: 12,
-},
-settingIcon: {
-  width: 26,
-},
-settingText: {
-  color: '#fff',
-  fontSize: 16,
-  marginLeft: 10,
-},
-signOutRow: {
-  marginTop: 20,
-  borderTopWidth: 1,
-  borderTopColor: '#444',
-  paddingTop: 15,
-},
-signOutText: {
-  color: '#FBBC05',
-  fontSize: 16,
-  marginLeft: 10,
-},
-closeButton: {
-  alignSelf: 'center',
-  marginTop: 20,
-},
-closeText: {
-  color: '#FBBC05',
-  fontWeight: '600',
-  fontSize: 16,
-},
   backButton: {
     position: 'absolute',
     top: 50,
@@ -220,51 +181,88 @@ closeText: {
     zIndex: 10,
     padding: 10,
   },
-  content: {
-    flex: 1,
+  profileSection: {
     alignItems: 'center',
-    justifyContent: 'center',
+    marginTop: 30,
+    marginBottom: 10,
   },
-  title: {
-    fontSize: 28,
-    fontWeight: '600',
-    marginBottom: 20,
-    color: '#fff',
-  },
-  image: {
-    width: 140,
-    height: 140,
-    borderRadius: 70,
-    marginBottom: 15,
+  profileImage: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    marginBottom: 10,
+    backgroundColor: '#ccc',
   },
   placeholder: {
-    width: 140,
-    height: 140,
-    borderRadius: 70,
+    width: 120,
+    height: 120,
+    borderRadius: 60,
     backgroundColor: '#ccc',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 15,
   },
   placeholderText: {
     color: '#615C5C',
-    textAlign: 'center',
-    paddingHorizontal: 10,
   },
-  footer: {
+  userName: {
+    fontSize: 22,
+    fontWeight: '700',
+    color: '#fff',
+  },
+  statsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 20,
+  },
+  statCard: {
+    backgroundColor: '#fff',
+    borderRadius: 16,
+    paddingVertical: 20,
+    paddingHorizontal: 15,
     alignItems: 'center',
-    paddingBottom: 40,
+    width: '28%',
   },
-  saveButton: {
-    backgroundColor: '#FBBC05',
-    paddingVertical: 12,
-    paddingHorizontal: 30,
-    borderRadius: 10,
+  statValue: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#2D2B2B',
   },
-  saveButtonText: {
-    color: '#000',
+  statLabel: {
+    fontSize: 13,
+    color: '#666',
+    textAlign: 'center',
+    marginTop: 4,
+  },
+  blockRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '90%',
+    marginTop: 30,
+    alignSelf: 'center',
+  },
+  blockCard: {
+    backgroundColor: '#fff',
+    borderRadius: 16,
+    padding: 20,
+    width: '45%',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  blockTitle: {
     fontSize: 16,
     fontWeight: '600',
+    color: '#2D2B2B',
+    marginBottom: 4,
+    textAlign: 'center',
+  },
+  blockText: {
+    fontSize: 13,
+    color: '#666',
+    textAlign: 'center',
   },
   modalOverlay: {
     flex: 1,
@@ -272,27 +270,46 @@ closeText: {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  modalContent: {
-    backgroundColor: '#fff',
-    width: '80%',
-    padding: 24,
-    borderRadius: 10,
-    alignItems: 'center',
+  modalContainer: {
+    backgroundColor: '#2D2B2B',
+    width: '90%',
+    padding: 20,
+    borderRadius: 16,
+    alignItems: 'flex-start',
   },
-  modalTitle: {
-    fontSize: 20,
+  modalHeader: {
+    fontSize: 22,
+    color: '#fff',
+    fontWeight: '700',
+    alignSelf: 'center',
+    marginBottom: 10,
+  },
+  sectionTitle: {
+    color: '#999',
+    fontSize: 14,
     fontWeight: '600',
-    marginBottom: 20,
+    marginBottom: 10,
   },
-  modalItem: {
+  settingRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 12,
+  },
+  settingIcon: {
+    width: 26,
+  },
+  settingText: {
+    color: '#fff',
     fontSize: 16,
-    paddingVertical: 10,
-    color: '#333',
+    marginLeft: 10,
   },
-  modalClose: {
+  closeButton: {
+    alignSelf: 'center',
     marginTop: 20,
-    fontSize: 16,
+  },
+  closeText: {
     color: '#FBBC05',
     fontWeight: '600',
+    fontSize: 16,
   },
 });
